@@ -1,0 +1,29 @@
+{
+  "name": "cpuga05/prueba-uvinum",
+  "description": "Prueba técnica para la empresa Uvinum",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christian Puga",
+      "email": "cpuga05@outlook.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Shop\\": "src/Shop"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\": "test"
+    }
+  },
+  "require": {
+    "php": "^7.1",
+    "ramsey/uuid": "^3.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  }
+}
