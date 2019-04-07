@@ -41,14 +41,6 @@ final class Unit
     }
 
     /**
-     * @return int
-     */
-    public function amount(): int
-    {
-        return $this->amount;
-    }
-
-    /**
      * @param Unit $unit
      *
      * @return bool
@@ -86,6 +78,24 @@ final class Unit
     public function isBiggerOrEqualThan(Unit $unit): bool
     {
         return $this->amount() >= $unit->amount();
+    }
+
+    /**
+     * @param Unit $unit
+     *
+     * @return Unit
+     */
+    public function add(Unit $unit): self
+    {
+        return new Unit($this->amount() + $unit->amount());
+    }
+
+    /**
+     * @return int
+     */
+    public function amount(): int
+    {
+        return $this->amount;
     }
 
     /**

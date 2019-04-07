@@ -104,4 +104,15 @@ final class UnitTest extends TestCase
 
         $this->assertFalse($unit1->isBiggerOrEqualThan($unit2));
     }
+
+    public function testAdd()
+    {
+        $unit1 = new Unit(5);
+        $unit2 = new Unit(6);
+
+        $unit3 = $unit1->add($unit2);
+
+        $this->assertEquals(11, $unit3->amount());
+        $this->assertNotSame($unit3, $unit1);
+    }
 }
