@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Shop\Application\Service\Cart\View;
 
 use Shop\Domain\Model\Cart\Cart;
+use Shop\Domain\Model\Cart\CartFinder;
 use Shop\Domain\Model\Cart\CartId;
 use Shop\Domain\Model\Cart\CartNotExists;
 use Shop\Domain\Model\Cart\CartRepository;
@@ -12,13 +13,13 @@ use Shop\Domain\Model\Cart\CartRepository;
 final class ViewCartService
 {
     /**
-     * @var CartRepository
+     * @var CartFinder
      */
-    private $cartRepository;
+    private $cartFinder;
 
     public function __construct(CartRepository $cartRepository)
     {
-        $this->cartRepository = $cartRepository;
+        $this->cartFinder = new CartFinder($cartRepository);
     }
 
     /**
@@ -29,12 +30,6 @@ final class ViewCartService
      */
     public function execute(CartId $id): Cart
     {
-        $cart = $this->cartRepository->ofId($id);
-
-        if ($cart === null) {
-            throw new CartNotExists($id);
-        }
-
-        return $cart;
+        return $this->cartFinder->execute($id);
     }
 }
