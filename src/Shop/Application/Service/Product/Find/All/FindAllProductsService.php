@@ -19,6 +19,9 @@ final class FindAllProductsService
         $this->productRepository = $productRepository;
     }
 
+    /**
+     * @return Products
+     */
     public function execute(): Products
     {
         return $this->productRepository->all();

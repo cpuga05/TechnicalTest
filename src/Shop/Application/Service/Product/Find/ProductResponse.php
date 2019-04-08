@@ -43,6 +43,11 @@ final class ProductResponse implements Response
         $this->offerPrice = $offerPrice;
     }
 
+    /**
+     * @param Product $product
+     *
+     * @return ProductResponse
+     */
     public static function fromProduct(Product $product): self
     {
         return new self(

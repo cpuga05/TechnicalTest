@@ -9,6 +9,11 @@ use Shop\Domain\Model\Product\Products;
 
 final class ProductsResponse extends ResponseCollection
 {
+    protected function type(): string
+    {
+        return ProductResponse::class;
+    }
+
     /**
      * @param Products $products
      *
@@ -23,10 +28,5 @@ final class ProductsResponse extends ResponseCollection
         }
 
         return new self($items);
-    }
-
-    protected function type(): string
-    {
-        return ProductResponse::class;
     }
 }

@@ -21,6 +21,11 @@ final class FindOneProductService
         $this->productRepository = $productRepository;
     }
 
+    /**
+     * @param ProductId $id
+     *
+     * @return Product
+     */
     public function execute(ProductId $id): Product
     {
         $product = $this->productRepository->ofId($id);
