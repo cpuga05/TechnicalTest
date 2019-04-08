@@ -65,6 +65,20 @@ final class Money
     }
 
     /**
+     * @param Money $money
+     *
+     * @return Money
+     */
+    public function add(Money $money): self
+    {
+        if (! $this->currency()->equals($money->currency())) {
+            throw new InvalidArgumentException('Not same currency');
+        }
+
+        return new Money($this->amount() + $money->amount(), $this->currency());
+    }
+
+    /**
      * @param float $value
      *
      * @return Money

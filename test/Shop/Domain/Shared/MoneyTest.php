@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Test\Shop\Domain\Shared;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Shop\Domain\Model\Shared\Currency;
 use Shop\Domain\Model\Shared\Money;
@@ -49,7 +50,6 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->equals($money2));
     }
 
-
     public function testMultiplyMoney()
     {
         $string = '5.5EUR';
@@ -59,5 +59,25 @@ final class MoneyTest extends TestCase
 
         $this->assertEquals('11EUR', $money2->__toString());
         $this->assertNotSame($money1, $money2);
+    }
+
+    public function testAddNotValidMoney()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $money1 = Money::fromString('5EUR');
+        $money2 = Money::fromString('5USD');
+
+        $money3 = $money1->add($money2);
+    }
+
+    public function testAddValidMoney()
+    {
+        $money1 = Money::fromString('5EUR');
+        $money2 = Money::fromString('5EUR');
+
+        $money3 = $money1->add($money2);
+
+        $this->assertEquals('10EUR', $money3->__toString());
     }
 }
