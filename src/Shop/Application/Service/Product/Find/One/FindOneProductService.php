@@ -5,20 +5,20 @@ declare(strict_types = 1);
 namespace Shop\Application\Service\Product\Find\One;
 
 use Shop\Domain\Model\Product\Product;
+use Shop\Domain\Model\Product\ProductFinder;
 use Shop\Domain\Model\Product\ProductId;
-use Shop\Domain\Model\Product\ProductNotExists;
 use Shop\Domain\Model\Product\ProductRepository;
 
 final class FindOneProductService
 {
     /**
-     * @var ProductRepository
+     * @var ProductFinder
      */
-    private $productRepository;
+    private $productFinder;
 
     public function __construct(ProductRepository $productRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->productFinder = new ProductFinder($productRepository);
     }
 
     /**
@@ -28,12 +28,6 @@ final class FindOneProductService
      */
     public function execute(ProductId $id): Product
     {
-        $product = $this->productRepository->ofId($id);
-
-        if ($product === null) {
-            throw new ProductNotExists($id);
-        }
-
-        return $product;
+        return $this->productFinder->execute($id);
     }
 }
