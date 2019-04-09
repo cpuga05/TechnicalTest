@@ -7,6 +7,7 @@
 ### Installation
 ```bash
 $ git clone https://github.com/cpuga05/UvinumTechnicalTest.git
+$ cd UvinumTechnicalTest
 $ composer update
 ```
 ### Run tests
@@ -19,7 +20,7 @@ $ php src/Shop/Infrastructure/UI/Console/init.php
 ```
 OR
 ```bash
-$ cd src/Infrastructure/UI/Console
+$ cd src/Shop/Infrastructure/UI/Console
 $ php init.php
 ```
 ## In app
