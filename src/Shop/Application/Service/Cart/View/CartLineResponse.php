@@ -48,6 +48,11 @@ final class CartLineResponse
      */
     private $totalPrice;
 
+    /**
+     * @var string
+     */
+    private $totalOfferPrice;
+
     public function __construct(
         string $id,
         string $productId,
@@ -56,16 +61,18 @@ final class CartLineResponse
         int $unitsOffer,
         string $offerPrice,
         bool $offer,
-        string $totalPrice
+        string $totalPrice,
+        string $totalOfferPrice
     ) {
-        $this->id         = $id;
-        $this->productId  = $productId;
-        $this->units      = $units;
-        $this->unitPrice  = $unitPrice;
-        $this->unitsOffer = $unitsOffer;
-        $this->offerPrice = $offerPrice;
-        $this->offer      = $offer;
-        $this->totalPrice = $totalPrice;
+        $this->id              = $id;
+        $this->productId       = $productId;
+        $this->units           = $units;
+        $this->unitPrice       = $unitPrice;
+        $this->unitsOffer      = $unitsOffer;
+        $this->offerPrice      = $offerPrice;
+        $this->offer           = $offer;
+        $this->totalPrice      = $totalPrice;
+        $this->totalOfferPrice = $totalOfferPrice;
     }
 
     /**
@@ -83,7 +90,80 @@ final class CartLineResponse
             $cartLine->unitsOffer()->amount(),
             $cartLine->offerPrice()->__toString(),
             $cartLine->offer(),
-            $cartLine->totalPrice()->__toString()
+            $cartLine->totalPrice()->__toString(),
+            $cartLine->totalOfferPrice()->__toString()
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function id(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function productId(): string
+    {
+        return $this->productId;
+    }
+
+    /**
+     * @return int
+     */
+    public function units(): int
+    {
+        return $this->units;
+    }
+
+    /**
+     * @return string
+     */
+    public function unitPrice(): string
+    {
+        return $this->unitPrice;
+    }
+
+    /**
+     * @return int
+     */
+    public function unitsOffer(): int
+    {
+        return $this->unitsOffer;
+    }
+
+    /**
+     * @return string
+     */
+    public function offerPrice(): string
+    {
+        return $this->offerPrice;
+    }
+
+    /**
+     * @return bool
+     */
+    public function offer(): bool
+    {
+        return $this->offer;
+    }
+
+    /**
+     * @return string
+     */
+    public function totalPrice(): string
+    {
+        return $this->totalPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function totalOfferPrice(): string
+    {
+        return $this->totalOfferPrice;
     }
 }
