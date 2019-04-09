@@ -29,7 +29,7 @@ final class CreateProductCommandHandler
         $name       = $command->name();
         $price      = Money::fromString($command->price());
         $offerUnits = new Unit($command->offerUnits());
-        $offerPrice = Money::fromString($command->price());
+        $offerPrice = Money::fromString($command->offerPrice());
 
         $this->createProductService->execute($id, $name, $price, $offerUnits, $offerPrice);
     }
