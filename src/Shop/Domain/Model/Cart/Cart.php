@@ -74,6 +74,15 @@ final class Cart
     }
 
     /**
+     * @param ProductId $productId
+     */
+    public function removeProduct(ProductId $productId): void
+    {
+        $this->lines->removeLine($productId);
+        $this->calculateTotalPrice();
+    }
+
+    /**
      * @return CartId
      */
     public function id(): CartId

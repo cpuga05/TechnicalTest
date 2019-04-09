@@ -6,9 +6,15 @@ namespace Shop\Domain\Model\Cart;
 
 use Shop\Domain\Collection;
 use Shop\Domain\Model\Product\ProductId;
+use Shop\Domain\Model\Product\ProductNotExists;
 
 final class CartLines extends Collection
 {
+    protected function type(): string
+    {
+        return CartLine::class;
+    }
+
     /**
      * @param ProductId $id
      *
@@ -25,8 +31,19 @@ final class CartLines extends Collection
         return null;
     }
 
-    protected function type(): string
+    /**
+     * @param ProductId $id
+     */
+    public function removeLine(ProductId $id): void
     {
-        return CartLine::class;
+        foreach ($this->items() as $index => $item) {
+            if ($id->equals($item->productId())) {
+                $this->items = array_slice($this->items, $index + 1, 1);
+
+                return;
+            }
+        }
+
+        throw new ProductNotExists($id);
     }
 }

@@ -15,7 +15,7 @@ abstract class Collection implements Countable, IteratorAggregate
     /**
      * @var array
      */
-    private $items;
+    protected $items;
 
     public function __construct(array $items)
     {
@@ -51,6 +51,9 @@ abstract class Collection implements Countable, IteratorAggregate
      */
     abstract protected function type(): string;
 
+    /**
+     * @param $item
+     */
     public function add($item): void
     {
         $this->ensureItemSameType($item);
