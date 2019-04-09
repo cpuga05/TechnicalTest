@@ -86,8 +86,8 @@ final class CartLineTest extends TestCase
         );
 
         $this->assertFalse($cartLine->offer());
-        $this->assertEquals('50EUR', $cartLine->totalPrice());
-        $this->assertEquals('0EUR', $cartLine->totalOfferPrice());
+        $this->assertEquals('50 EUR', $cartLine->totalPrice());
+        $this->assertEquals('0 EUR', $cartLine->totalOfferPrice());
     }
 
     public function testCalculateTotalPriceWithOffer()
@@ -102,7 +102,7 @@ final class CartLineTest extends TestCase
         );
 
         $this->assertTrue($cartLine->offer());
-        $this->assertEquals('100EUR', $cartLine->totalPrice());
-        $this->assertEquals('80EUR', $cartLine->totalOfferPrice());
+        $this->assertEquals('100 EUR', $cartLine->totalPrice());
+        $this->assertEquals('80 EUR', $cartLine->totalOfferPrice());
     }
 }

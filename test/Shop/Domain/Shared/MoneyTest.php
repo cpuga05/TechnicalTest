@@ -15,12 +15,12 @@ final class MoneyTest extends TestCase
     {
         $money = new Money(5, new Currency('EUR'));
 
-        $this->assertEquals('5EUR', $money->__toString());
+        $this->assertEquals('5 EUR', $money->__toString());
     }
 
     public function testFromStringValidMoney()
     {
-        $string = '5.5EUR';
+        $string = '5.5 EUR';
         $money  = Money::fromString($string);
 
         $this->assertEquals($string, $money->__toString());
@@ -28,7 +28,7 @@ final class MoneyTest extends TestCase
 
     public function testFromStringInvalidMoney()
     {
-        $string = '5,5EUR';
+        $string = '5,5 EUR';
         $money  = Money::fromString($string);
 
         $this->assertNotEquals($string, $money->__toString());
@@ -57,7 +57,7 @@ final class MoneyTest extends TestCase
 
         $money2 = $money1->multiply(2);
 
-        $this->assertEquals('11EUR', $money2->__toString());
+        $this->assertEquals('11 EUR', $money2->__toString());
         $this->assertNotSame($money1, $money2);
     }
 
@@ -78,6 +78,6 @@ final class MoneyTest extends TestCase
 
         $money3 = $money1->add($money2);
 
-        $this->assertEquals('10EUR', $money3->__toString());
+        $this->assertEquals('10 EUR', $money3->__toString());
     }
 }

@@ -34,8 +34,8 @@ final class CartTest extends TestCase
             Money::fromString('4EUR')
         );
 
-        $this->assertEquals('25EUR', $cart->totalPriceWithoutOffers()->__toString());
-        $this->assertEquals('25EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertEquals('25 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('25 EUR', $cart->totalPriceWithOffers()->__toString());
     }
 
     public function testTakeNewProductWithOffer()
@@ -50,8 +50,8 @@ final class CartTest extends TestCase
             Money::fromString('4EUR')
         );
 
-        $this->assertEquals('50EUR', $cart->totalPriceWithoutOffers()->__toString());
-        $this->assertEquals('40EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertEquals('50 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('40 EUR', $cart->totalPriceWithOffers()->__toString());
     }
 
     public function testTakeExistsProduct()
@@ -74,8 +74,8 @@ final class CartTest extends TestCase
             Money::fromString('4EUR')
         );
 
-        $this->assertEquals('10EUR', $cart->totalPriceWithoutOffers()->__toString());
-        $this->assertEquals('10EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertEquals('10 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('10 EUR', $cart->totalPriceWithOffers()->__toString());
     }
 
     public function testTakeExistsProductWithOffer()
@@ -98,8 +98,8 @@ final class CartTest extends TestCase
             Money::fromString('4EUR')
         );
 
-        $this->assertEquals('50EUR', $cart->totalPriceWithoutOffers()->__toString());
-        $this->assertEquals('40EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertEquals('50 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('40 EUR', $cart->totalPriceWithOffers()->__toString());
     }
 
     public function testTakeNewProductWithCartNotFull()
@@ -122,8 +122,8 @@ final class CartTest extends TestCase
             Money::fromString('5EUR')
         );
 
-        $this->assertEquals('25EUR', $cart->totalPriceWithoutOffers()->__toString());
-        $this->assertEquals('25EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertEquals('25 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('25 EUR', $cart->totalPriceWithOffers()->__toString());
     }
 
     public function testTakeNewProductWithCartFull()
@@ -149,5 +149,32 @@ final class CartTest extends TestCase
             new Unit(10),
             Money::fromString('4EUR')
         );
+    }
+
+    public function testRemoveExistsProduct()
+    {
+        $cart = new Cart(CartId::random());
+
+        $cart->takeProduct(
+            new ProductId('5'),
+            new Unit(1),
+            Money::fromString('5EUR'),
+            new Unit(10),
+            Money::fromString('4EUR')
+        );
+
+        $cart->takeProduct(
+            new ProductId('6'),
+            new Unit(2),
+            Money::fromString('10EUR'),
+            new Unit(10),
+            Money::fromString('5EUR')
+        );
+
+        $cart->removeProduct(new ProductId('5'));
+
+        $this->assertEquals('20 EUR', $cart->totalPriceWithoutOffers()->__toString());
+        $this->assertEquals('20 EUR', $cart->totalPriceWithOffers()->__toString());
+        $this->assertCount(1, $cart->lines());
     }
 }
