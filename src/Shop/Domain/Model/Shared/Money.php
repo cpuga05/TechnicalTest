@@ -93,6 +93,6 @@ final class Money
      */
     public function __toString(): string
     {
-        return $this->amount().$this->currency()->isoCode();
+        return $this->amount().' '.$this->currency()->isoCode();
     }
 }
