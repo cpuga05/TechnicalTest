@@ -21,6 +21,7 @@
   },
   "require": {
     "php": "^7.1",
+    "ext-simplexml": "*",
     "ramsey/uuid": "^3.8"
   },
   "require-dev": {
